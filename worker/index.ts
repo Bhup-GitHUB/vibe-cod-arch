@@ -3,11 +3,12 @@ import {
   AutoScalingClient,
   SetDesiredCapacityCommand,
   DescribeAutoScalingInstancesCommand,
+  TerminateInstanceInAutoScalingGroupCommand,
   
 } from "@aws-sdk/client-auto-scaling";
 import { Request, Response } from "express";
 import express from "express";
-import { EC2Client, DescribeInstancesCommand
+import { EC2Client, DescribeInstancesCommand, TerminateInstancesCommand
  
 } from "@aws-sdk/client-ec2";
 
@@ -24,6 +25,7 @@ app.get("/:Id", async (req: Request, res: Response) => {
     return;
   }
 
+  
 
 
   idleMachine.isUsed=true;
@@ -31,6 +33,25 @@ app.get("/:Id", async (req: Request, res: Response) => {
     AutoScalingGroupName:"vscode-asg",
     DesiredCapacity:ALL_MACHINE.length +1
   })
+
+//will be called by worker and should be protected 
+app.post("/delete/:Id", async (req: Request, res: Response) => {
+ //terminate the machine 
+
+ const machineID : string= req.body.machineID;
+
+  const command = new TerminateInstanceInAutoScalingGroupCommand({
+  InstanceId: machineID,
+  ShouldDecrementDesiredCapacity:true
+ })
+
+ 
+
+ console.log(command);
+})
+
+
+
 
 
   //scale up 
