@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-auto-scaling": "^3.864.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.1",
+    "typescript": "^5.9.2"
+  }
+
+  
+}
