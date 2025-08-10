@@ -1,7 +1,7 @@
 import "dotenv/config";
 import {
   AutoScalingClient,
-  DescribePoliciesCommand,
+  SetDesiredCapacityCommand,
 } from "@aws-sdk/client-auto-scaling";
 
 if (!process.env.AWS_ACCESS_KEY || !process.env.AWS_ACCESS_SECRET) {
@@ -17,6 +17,12 @@ const client = new AutoScalingClient({
 });
 
 (async () => {
-  const data = await client.send(new DescribePoliciesCommand({}));
+  const command = new SetDesiredCapacityCommand({
+    AutoScalingGroupName: "vscode-asg",
+    DesiredCapacity: 2,
+    HonorCooldown: true,
+  });
+
+  const data = await client.send(command);
   console.log(data);
 })();
