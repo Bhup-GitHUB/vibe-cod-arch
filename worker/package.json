@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@aws-sdk/client-auto-scaling": "^3.864.0",
+    "@aws-sdk/client-ec2": "^3.864.0",
     "@types/express": "^5.0.3",
     "dotenv": "^17.2.1",
     "express": "^5.1.0"
@@ -11,6 +12,5 @@
   },
   "scripts": {
     "dev": "tsc -b &&node dist/index.js"
-    
   }
 }
