@@ -1,16 +1,16 @@
 {
   "dependencies": {
     "@aws-sdk/client-auto-scaling": "^3.864.0",
-    "dotenv": "^17.2.1"
+    "@types/express": "^5.0.3",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "^24.2.1",
     "typescript": "^5.9.2"
   },
   "scripts": {
-    "build": "tsc -b",
-    "start": "node dist/index.js",
-    "dev": "tsc -w"
+    "dev": "tsc -b &&node dist/index.js"
     
   }
 }
