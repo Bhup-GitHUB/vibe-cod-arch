@@ -9,7 +9,7 @@ This repository contains a minimal worker that programmatically scales an AWS Au
 - **Current behavior**: Sets desired capacity to `2` and honors cooldowns
 
 ### Architecture sketch
-![Platform sketch](code.png)
+![Worker output](image.png)
 
 ### Screenshots
 - ASG dashboard
@@ -18,7 +18,8 @@ This repository contains a minimal worker that programmatically scales an AWS Au
 
 - Successful AWS API call (200 OK)
 
-  ![Worker output](image.png)
+  
+  ![Platform sketch](code.png)
 
 - VS Code Web running on a worker
 
