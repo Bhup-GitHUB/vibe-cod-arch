@@ -14,8 +14,31 @@ import { EC2Client, DescribeInstancesCommand
 const app = express();
 
 
-app.get("/", async (req: Request, res: Response) => {
-  res.send("Welcome to the server");
+app.get("/:Id", async (req: Request, res: Response) => {
+  const idleMachine= ALL_MACHINE.find(x => x.isUsed ===false)
+  if(!idleMachine){
+    // will scale up 
+
+
+    return res.status(400).send("No idle machine found");
+    return;
+  }
+
+
+
+  idleMachine.isUsed=true;
+  const command = new SetDesiredCapacityCommand({ 
+    AutoScalingGroupName:"vscode-asg",
+    DesiredCapacity:ALL_MACHINE.length +1
+  })
+
+
+  //scale up 
+  res.send({
+    ip:idleMachine.ip,
+  })
+  idleMachine.assignedProject=req.params.Id;
+  
   await refreshMachineList(); 
 });
 
